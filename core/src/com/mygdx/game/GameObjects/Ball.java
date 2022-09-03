@@ -31,6 +31,7 @@ public class Ball extends Figure {
     }
 
     public void draw(ShapeRenderer shapeRenderer) {
+        //draw for the Ball
         super.draw(shapeRenderer);
         shapeRenderer.circle(x,y,size);
     }
