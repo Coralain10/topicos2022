@@ -3,6 +3,7 @@ package com.mygdx.game.GameObjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Interface.IFigure;
 import com.mygdx.game.MyGdxGame;
 
@@ -11,7 +12,7 @@ public class Ball extends Figure implements IFigure {
     //Ctrl + Insert
     public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
         super(x,y,size,xSpeed,ySpeed);
-        color = Color.CORAL;
+        color = Color.MAGENTA;
     }
 
     //Ctrl + Alt + L
@@ -24,6 +25,16 @@ public class Ball extends Figure implements IFigure {
         if (y < 0 || y > Gdx.graphics.getHeight()) {
             ySpeed = -ySpeed;
         }
+    }
+
+    public void bounce() {
+        xSpeed = -xSpeed;
+        ySpeed = -ySpeed;
+    }
+
+    @Override
+    protected Rectangle getArea() {
+        return new Rectangle(this.x, this.y, this.size*2, this.size*2);
     }
 
     protected void draw(ShapeRenderer shapeRenderer) {

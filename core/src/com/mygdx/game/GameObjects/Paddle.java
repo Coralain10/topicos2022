@@ -1,12 +1,14 @@
 package com.mygdx.game.GameObjects;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.Interface.IFigure;
 
 public class Paddle extends Figure implements IFigure {
 
-    public Paddle(int x, int y, int height, int width) {
-        super(x,y,height,width);
+    public Paddle(int x, int y, int width, int height) {
+        super(x,y,width,height);
+        color = Color.ROYAL;
     }
 
     protected void draw(ShapeRenderer shapeRenderer) {

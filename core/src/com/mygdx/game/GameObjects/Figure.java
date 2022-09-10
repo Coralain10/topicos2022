@@ -1,7 +1,9 @@
 package com.mygdx.game.GameObjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Figure {
     protected int x;
@@ -11,13 +13,15 @@ public class Figure {
     protected int ySpeed;
     protected int height;
     protected int width;
+    protected Rectangle rectangle;
     protected Color color = Color.WHITE;
 
-    public Figure(int x, int y, int height, int width) {
+    public Figure(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.height = height;
         this.width = width;
+        rectangle = new Rectangle(x,y,width,height);
     }
 
     public Figure(int x, int y) {
@@ -31,18 +35,28 @@ public class Figure {
         this.size = size;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        rectangle = new Rectangle(x,y,width,height);
     }
 
     protected void draw(ShapeRenderer shapeRenderer) {
+        rectangle.x = x;
+        rectangle.y = y;
         shapeRenderer.setColor(color);
     }
 
-    protected void update() {
-
+    protected Rectangle getArea(){
+        return rectangle;
     }
 
-    protected boolean collideWith(Figure figure) {
-        return true;
+    protected void update() {
+    }
+
+    public boolean collideWith(Figure figure) {
+        if(getArea().overlaps(figure.getArea())){
+            Gdx.app.log("COLISION","he");
+            return true;
+        }
+        return false;
     }
 
     public int getX() {
@@ -91,5 +105,29 @@ public class Figure {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 }
